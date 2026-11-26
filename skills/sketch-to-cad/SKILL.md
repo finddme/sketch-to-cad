@@ -70,6 +70,13 @@ If a command says `environment not ready`, the venv is missing, half built
 or older than the pinned requirements: run `setup` again (with the same
 `--venv`).
 
+On Linux the CAD kernel also needs the system OpenGL library (`libGL.so.1`).
+Desktop installs usually have it; minimal WSL, servers and containers often do
+not. Setup checks that the kernel loads; if it says `libGL.so.1` is missing,
+ask the user to install it (Debian/Ubuntu/WSL: `sudo apt install libgl1`;
+Fedora/RHEL: `sudo dnf install mesa-libGL`; it needs their password, so do not
+run sudo yourself), then run setup again.
+
 If setup fails (or Python is older than 3.12) it prints a Docker fallback:
 build the repo's `Dockerfile`, then run `run.py` in the container with the
 repo mounted at `/skill` and your working directory at `/work`

@@ -154,9 +154,10 @@ def test_setup_refuses_old_python_before_touching_anything(runmod, tmp_path, mon
 def test_setup_writes_ready_marker_with_lock_hash(runmod, tmp_path, monkeypatch):
     venv = tmp_path / "v"
 
-    def fake_run(cmd, check):
+    def fake_run(cmd, **k):
         if "venv" in cmd:
             _fake_venv(venv, ready=None)
+        return subprocess.CompletedProcess(cmd, 0, "", "")
 
     monkeypatch.setattr(runmod.subprocess, "run", fake_run)
     args = runmod.make_parser().parse_args(["setup", "--venv", str(venv)])
@@ -179,7 +180,7 @@ def test_default_venv_is_inside_skill_folder(runmod):
 def test_failed_pip_removes_venv_that_setup_created(runmod, tmp_path, monkeypatch, capsys):
     venv = tmp_path / "v"
 
-    def fake_run(cmd, check):
+    def fake_run(cmd, **k):
         if "venv" in cmd:
             _fake_venv(venv, ready=None)
             return
@@ -196,7 +197,7 @@ def test_failed_pip_keeps_preexisting_venv(runmod, tmp_path, monkeypatch):
     venv = tmp_path / "v"
     _fake_venv(venv, ready=runmod.lock_digest())
 
-    def fake_run(cmd, check):
+    def fake_run(cmd, **k):
         if "venv" in cmd:
             return
         raise subprocess.CalledProcessError(1, cmd)
@@ -206,3 +207,39 @@ def test_failed_pip_keeps_preexisting_venv(runmod, tmp_path, monkeypatch):
     assert runmod.cmd_setup(args) == 1
     assert venv.exists()
     assert not (venv / ".sketchcad-ready").exists()  # an old marker must not survive a failed setup
+
+
+LIBGL_ERROR = ("Traceback (most recent call last):\n  File \"<string>\", line 1\n"
+               "ImportError: libGL.so.1: cannot open shared object file: No such file or directory\n")
+
+
+def test_setup_fails_when_cad_kernel_cannot_load(runmod, tmp_path, monkeypatch, capsys):
+    # pip succeeds but OpenCascade cannot load libGL (minimal Linux / WSL / server)
+    venv = tmp_path / "v"
+
+    def fake_run(cmd, **k):
+        if "venv" in cmd:
+            _fake_venv(venv, ready=None)
+        if cmd[1:3] == ["-c", runmod.RUNTIME_PROBE]:
+            return subprocess.CompletedProcess(cmd, 1, "", LIBGL_ERROR)
+        return subprocess.CompletedProcess(cmd, 0, "", "")
+
+    monkeypatch.setattr(runmod.subprocess, "run", fake_run)
+    args = runmod.make_parser().parse_args(["setup", "--venv", str(venv)])
+    assert runmod.cmd_setup(args) == 1
+    err = capsys.readouterr().err
+    assert "setup failed" in err and "libGL.so.1" in err
+    assert "sudo apt install libgl1" in err and "mesa-libGL" in err
+    assert "setup complete" not in err
+    assert venv.exists()  # installed packages are kept so the rerun is quick
+    assert not (venv / ".sketchcad-ready").exists()  # but later commands still refuse it
+
+
+def test_runtime_error_reports_other_import_failures_without_libgl_hint(runmod, monkeypatch):
+    monkeypatch.setattr(runmod.subprocess, "run",
+                        lambda cmd, **k: subprocess.CompletedProcess(cmd, 1, "", "ImportError: boom\n"))
+    msg = runmod.runtime_error("/v/bin/python")
+    assert "ImportError: boom" in msg and "apt" not in msg
+    monkeypatch.setattr(runmod.subprocess, "run",
+                        lambda cmd, **k: subprocess.CompletedProcess(cmd, 0, "", ""))
+    assert runmod.runtime_error("/v/bin/python") is None

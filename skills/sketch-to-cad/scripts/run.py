@@ -130,6 +130,26 @@ def _maybe_reexec():
         os.execv(py, [py, *sys.argv])
 
 
+RUNTIME_PROBE = "import OCP.OCP"  # OpenCascade loads the system OpenGL library (libGL.so.1 on Linux)
+
+
+def runtime_error(py):
+    """Why the installed packages cannot load (a missing system library), or None."""
+    r = subprocess.run([str(py), "-c", RUNTIME_PROBE], capture_output=True, text=True)
+    if r.returncode == 0:
+        return None
+    lines = [ln for ln in (r.stderr or "").strip().splitlines() if ln.strip()]
+    last = lines[-1] if lines else f"exit code {r.returncode}"
+    msg = f"the CAD kernel (OpenCascade) does not load: {last}"
+    if "libGL" in last:
+        msg += (
+            "\nInstall the system OpenGL library, then run setup again:\n"
+            "  Debian/Ubuntu/WSL: sudo apt install libgl1\n"
+            "  Fedora/RHEL:       sudo dnf install mesa-libGL"
+        )
+    return msg
+
+
 def cmd_setup(args):
     problem = python_version_error(sys.version_info)
     if problem:
@@ -144,6 +164,11 @@ def cmd_setup(args):
         if py is None:
             raise OSError(f"{venv}: venv has no Python interpreter")
         subprocess.run([str(py), "-m", "pip", "install", "-r", str(LOCK)], check=True)
+        problem = runtime_error(py)
+        if problem:  # packages are fine; keep the venv so the rerun is quick, but not ready
+            print(f"setup failed: {problem}", file=sys.stderr)
+            print(docker_hint(), file=sys.stderr)
+            return 1
         (venv / READY_MARKER).write_text(lock_digest() + "\n", encoding="utf-8")
     except (subprocess.CalledProcessError, OSError) as e:
         print(f"setup failed: {e}", file=sys.stderr)

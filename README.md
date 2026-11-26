@@ -64,6 +64,13 @@ cp -r skills/sketch-to-cad ~/.claude/skills/
 
 **First run (once).** Needs Python 3.12+ with venv support (`python3-venv` on Debian/Ubuntu) and network access. Installing the pinned packages takes a few minutes. The agent usually runs this step itself.
 
+On Linux, the CAD kernel also needs the system OpenGL library. Desktop installs usually have it; minimal WSL, servers and containers often do not. `setup` checks for it and tells you if it is missing:
+
+```bash
+sudo apt install libgl1        # Debian/Ubuntu/WSL
+sudo dnf install mesa-libGL    # Fedora/RHEL
+```
+
 ```bash
 # skill folder copy: installs into .venv inside the skill folder; later commands find it automatically
 python3 skills/sketch-to-cad/scripts/run.py setup

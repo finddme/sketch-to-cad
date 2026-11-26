@@ -111,3 +111,10 @@ def test_docs_cover_notes_sheets_resume_and_code_part_safety():
     assert "/skill" in skill and "/skill" in readme  # docker fallback mounts
     schema = (ROOT / "skills/sketch-to-cad/references/model-schema.md").read_text(encoding="utf-8")
     assert "reserved" in schema and "-notes" in schema
+
+
+def test_docs_name_the_linux_opengl_library():
+    # without libGL.so.1 the CAD kernel cannot load; setup checks it and the docs must say how to install it
+    for rel in DOCS:
+        text = (ROOT / rel).read_text(encoding="utf-8")
+        assert "sudo apt install libgl1" in text and "mesa-libGL" in text, rel

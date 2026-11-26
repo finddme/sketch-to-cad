@@ -1,6 +1,6 @@
 {
   "name": "sketch-to-cad",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Turn a hand sketch into a dimensioned CAD drawing, 3D model (STEP/GLB), 3D-print files and a single-file HTML viewer. Asks for missing dimensions instead of inventing them.",
   "author": { "name": "finddme" },
   "repository": "https://github.com/finddme/sketch-to-cad",
