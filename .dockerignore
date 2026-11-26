@@ -1,0 +1,7 @@
+.git
+.superpowers
+.venv
+node_modules
+__pycache__
+dev
+out

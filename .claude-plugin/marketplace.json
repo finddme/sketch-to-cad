@@ -1,0 +1,12 @@
+{
+  "name": "sketch-to-cad-marketplace",
+  "owner": { "name": "finddme" },
+  "description": "Marketplace for the sketch-to-cad skill.",
+  "plugins": [
+    {
+      "name": "sketch-to-cad",
+      "source": "./",
+      "description": "Hand sketch to dimensioned drawing, 3D model, print files and a single-file viewer."
+    }
+  ]
+}

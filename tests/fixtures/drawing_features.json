@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "units": "mm",
+  "upAxis": "Z",
+  "name": "drawing-features",
+  "assumptions": ["보스 높이는 스케치에 없어 8mm로 가정"],
+  "parts": [
+    {
+      "id": "plate",
+      "construction": "solid",
+      "features": [
+        {"id": "base", "operation": "base", "kind": "box", "originMm": [0, 0, 0], "sizeMm": [80, 50, 6]},
+        {"id": "hole", "operation": "cut", "kind": "hole", "at": [10, 10, 6], "direction": "-Z", "diameterMm": 5, "through": true},
+        {"id": "holes", "operation": "cut", "kind": "pattern", "of": "hole", "linear": {"countX": 3, "countY": 2, "stepMm": [30, 30, 0]}}
+      ],
+      "finish": [{"kind": "fillet", "radiusMm": 1, "edges": "all-outer"}]
+    },
+    {
+      "id": "bracket",
+      "construction": "solid",
+      "features": [
+        {"id": "body", "operation": "base", "kind": "extrude",
+         "profile": {"plane": "XZ", "points": [[0, 0], [40, 0], [40, 5], [5, 5], [5, 30], [0, 30]]},
+         "depthMm": 20},
+        {"id": "boss", "operation": "union", "kind": "cylinder", "centerMm": [24, 10, 5], "radiusMm": 6, "heightMm": 8, "axis": "Z"},
+        {"id": "bore", "operation": "cut", "kind": "hole", "at": [24, 10, 13], "direction": "-Z", "diameterMm": 4, "through": true}
+      ]
+    },
+    {
+      "id": "knob",
+      "construction": "solid",
+      "features": [
+        {"id": "shape", "operation": "base", "kind": "revolve",
+         "profileRzMm": [[0, 0], [12, 0], [12, 4], [8, 6], [8, 20], [0, 20]]}
+      ]
+    }
+  ],
+  "placement": [
+    {"part": "bracket", "translateMm": [10, 15, 6], "rotateDeg": [0, 0, 0]},
+    {"part": "knob", "translateMm": [66, 25, 6], "rotateDeg": [0, 0, 0]}
+  ],
+  "dimensions": [
+    {"label": "보스 높이", "valueMm": 8, "origin": "assumed", "part": "bracket", "feature": "boss"},
+    {"label": "plate width", "valueMm": 80, "origin": "sketch", "part": "plate"}
+  ]
+}

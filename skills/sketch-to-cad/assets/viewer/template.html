@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en" data-state="loading">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>__SKETCHCAD_TITLE__</title>
+<style>
+:root {
+  --bg: #ffffff;
+  --ink: #383736;
+  --muted: #8a8987;
+  --line: rgba(58, 55, 52, 0.12);
+  --wire: #6E6A68;
+  --safe-t: env(safe-area-inset-top, 0px);
+  --safe-r: env(safe-area-inset-right, 0px);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-l: env(safe-area-inset-left, 0px);
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 13px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overscroll-behavior: contain;
+  -webkit-text-size-adjust: 100%;
+}
+/* plain white backdrop: the model reads by its own shading and contact shadow
+   (tools/check-viewer.cjs counts pixels further from --bg as model ink) */
+#stage {
+  position: fixed; inset: 0; overflow: hidden;
+  background: var(--bg);
+}
+#view { position: absolute; inset: 0; width: 100%; height: 100%; display: block; outline: none; }
+html[data-done] #view { cursor: grab; }
+html[data-done] #view:active { cursor: grabbing; }
+/* scroll length of the story; only the scroll mode scrolls */
+#story { height: 0; }
+html[data-mode="scroll"] #story { height: 460vh; height: 460svh; }
+html[data-mode="scroll"][data-story="assembly"] #story { height: 620vh; height: 620svh; }
+
+/* story cards: 1 the source sketch, 2 the drawing sheet (wipes in over the sketch) */
+#sketch, #sheet {
+  position: absolute;
+  inset: calc(56px + var(--safe-t)) calc(16px + var(--safe-r)) calc(76px + var(--safe-b)) calc(16px + var(--safe-l));
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none; user-select: none;
+  will-change: opacity, transform;
+}
+#sketch .card, #sheet .card {
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(58, 48, 40, 0.06), 0 18px 48px -12px rgba(58, 48, 40, 0.18);
+}
+/* the sheet's wipe edge, a thin rule in the wire color that crosses the sketch */
+#sheet .paper { position: relative; }
+/* the lie-down maps the card's corners onto the 3D floor sheet (matrix3d from 0 0) */
+#sheet .card { transform-origin: 0 0; }
+#sheet .edge {
+  position: absolute; top: -6px; bottom: -6px; left: 0; width: 1.5px; margin-left: -0.75px;
+  background: var(--wire); border-radius: 1px; opacity: 0;
+}
+#sheet svg, #sketch img { display: block; width: 100%; height: 100%; }
+#sketch img { object-fit: contain; }
+html[data-state="loading"] :is(#sketch, #sheet), html[data-state="error"] :is(#sketch, #sheet) { visibility: hidden; }
+
+/* stage strip under the title: 1 Sketch · 2 Drawing · 3 3D, the current one in ink */
+#stages {
+  position: absolute;
+  top: calc(38px + var(--safe-t)); left: calc(20px + var(--safe-l));
+  margin: 0; padding: 0; list-style: none;
+  display: flex; align-items: baseline;
+  counter-reset: stage;
+  font: 500 11px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  pointer-events: none; user-select: none;
+  transition: opacity 0.3s ease;
+}
+#stages li { counter-increment: stage; opacity: 0.6; transition: opacity 0.3s ease, color 0.3s ease; white-space: nowrap; }
+#stages li::before { content: counter(stage) "\2009"; font-variant-numeric: tabular-nums; }
+#stages li + li { margin-left: 8px; }
+#stages li:not(:last-child)::after { content: "\00B7"; margin-left: 8px; opacity: 0.6; color: var(--muted); }
+#stages li.on { opacity: 1; color: var(--ink); }
+html[data-state="loading"] #stages, html[data-state="error"] #stages, html[data-mode="still"] #stages { opacity: 0; }
+
+#title {
+  position: absolute;
+  top: calc(18px + var(--safe-t)); left: calc(20px + var(--safe-l)); right: calc(20px + var(--safe-r));
+  margin: 0;
+  font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  pointer-events: none;
+}
+
+#hud {
+  position: absolute; left: 50%; bottom: calc(22px + var(--safe-b));
+  transform: translateX(-50%);
+  display: flex; align-items: center; gap: 12px;
+  transition: opacity 0.3s ease;
+}
+html[data-state="loading"] #hud, html[data-mode="still"]:not([data-multi]) #hud { opacity: 0; pointer-events: none; }
+html[data-mode="still"] #track, html[data-mode="still"] #replay { display: none; }
+#track { width: 96px; height: 2px; border-radius: 1px; background: var(--line); overflow: hidden; }
+#fill { width: 100%; height: 100%; background: var(--wire); transform-origin: left center; transform: scaleX(0); }
+#replay {
+  width: 34px; height: 34px; padding: 0; margin: -4px 0;
+  display: grid; place-items: center;
+  border: 1px solid var(--line); border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7); color: var(--ink);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.25s ease, background 0.2s ease;
+}
+#replay:hover { background: #fff; }
+#replay:focus-visible { outline: 2px solid var(--wire); outline-offset: 2px; }
+#replay svg { width: 14px; height: 14px; }
+/* explode / assemble toggle: multi-part models, once the story is done */
+#explode {
+  display: none;
+  height: 34px; min-width: 64px; padding: 0 16px; margin: -4px 0;
+  border: 1px solid var(--line); border-radius: 17px;
+  background: rgba(255, 255, 255, 0.7); color: var(--ink);
+  font: 500 12px/1 system-ui, -apple-system, "Segoe UI", Roboto, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: opacity 0.25s ease, visibility 0s linear 0.25s, background 0.2s ease;
+  opacity: 0; visibility: hidden;
+}
+html[data-multi] #explode { display: block; }
+html[data-done] #explode { opacity: 1; visibility: visible; transition: opacity 0.25s ease, background 0.2s ease; }
+#explode:hover { background: #fff; }
+#explode:focus-visible { outline: 2px solid var(--wire); outline-offset: 2px; }
+/* scroll mode: the button returns to the start once the story is done */
+html[data-mode="scroll"]:not([data-done]) #replay { opacity: 0; pointer-events: none; }
+html[data-mode="scroll"] #replay .icon-replay, html:not([data-mode="scroll"]) #replay .icon-top { display: none; }
+
+#hint {
+  position: absolute; left: 50%; bottom: calc(46px + var(--safe-b));
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+html:not([data-mode="scroll"]) #hint, html[data-started] #hint, html[data-state="loading"] #hint { opacity: 0; }
+
+#status {
+  position: absolute; inset: 0; margin: 0;
+  display: grid; place-content: center; text-align: center; color: var(--muted);
+}
+#status[hidden] { display: none; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <canvas id="view" aria-label="3D model of __SKETCHCAD_TITLE__" role="img"></canvas>
+  <div id="sketch" aria-hidden="true"><div class="card"><img alt="" decoding="sync"></div></div>
+  <div id="sheet" aria-hidden="true"><div class="paper"><div class="card"></div><i class="edge"></i></div></div>
+  <p id="title"></p>
+  <ol id="stages" aria-label="Sketch → drawing → 3D">
+    <li data-stage="1">Sketch</li>
+    <li data-stage="2">Drawing</li>
+    <li data-stage="3">3D</li>
+  </ol>
+  <p id="hint">Scroll</p>
+  <div id="hud">
+    <div id="track" aria-hidden="true"><div id="fill"></div></div>
+    <button id="explode" type="button" aria-label="Explode parts">Explode</button>
+    <button id="replay" type="button" aria-label="Replay">
+      <svg class="icon-replay" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 8a5.5 5.5 0 1 0 1.7-3.98"/><path d="M2.5 2.5v3h3"/></svg>
+      <svg class="icon-top" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V3"/><path d="M3.5 7.5 8 3l4.5 4.5"/></svg>
+    </button>
+  </div>
+  <p id="status" role="alert" hidden></p>
+</div>
+<div id="story"></div>
+<script type="application/json" id="sketchcad-data">__SKETCHCAD_DATA__</script>
+<script>__SKETCHCAD_BUNDLE__</script>
+</body>
+</html>

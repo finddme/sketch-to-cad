@@ -1,0 +1,14 @@
+{
+  "name": "sketch-to-cad-dev",
+  "private": true,
+  "description": "Developer-only tooling: builds skills/sketch-to-cad/assets/viewer/viewer.bundle.js. Skill users do not need Node.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build-viewer": "node build-viewer.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "three": "0.186.1"
+  }
+}

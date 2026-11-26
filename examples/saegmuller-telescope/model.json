@@ -1,0 +1,1920 @@
+{
+  "schemaVersion": 1,
+  "units": "mm",
+  "upAxis": "Z",
+  "name": "saegmuller-equatorial-telescope",
+  "source": {
+    "images": [
+      {
+        "file": "sketch.png",
+        "views": [
+          "Fig. 1 side elevation, partly in section",
+          "Fig. 2 graduated circle",
+          "Fig. 3 detail section at the eyepiece end of the tube"
+        ]
+      }
+    ]
+  },
+  "assumptions": [
+    "The patent drawing has no dimensions. The model is a desk-size personal refractor, not life size: the main tube is assumed 136 mm long and 24 mm across, and every other size follows the proportions of Fig. 1 or of typical 1880s-1900s portable equatorial refractors.",
+    "Fig. 1 cuts off the objective end of the tube and the lower pier. The objective cell, dew shield, turned pier, three-legged base with leveling screws and the counterweights are filled in from typical portable equatorials of the period.",
+    "The polar axis is set 40 degrees above the horizon (about the latitude of Washington, D.C.) on a latitude pivot; in the assembly the tube points 35 degrees up.",
+    "Worm wheels have 30 square teeth, setting circles 24 rim notches and worms seven plain rings; real tooth forms, threads and graduations are not modeled. The declination slow-motion rod runs along the polar X direction toward the eyepiece.",
+    "Tube, lens, eyepieces and finder are solid turned shapes (no optics); sleeves and rings have walls of 1.2 mm or more.",
+    "Shafts, pins and screws sit in bores 0.5 mm over their diameter, and sleeves, bands and brackets 0.6 mm over what they hold, so no two parts touch.",
+    "The parts list (bom: Korean and English names, materials, finishes, roles) is written for this example as if the user had handed it over with the sketch: materials and finishes follow brass-and-cast-iron instruments of the 1880s and are assumed, not read from the patent, and the listed sizes are the model's assumed sizes."
+  ],
+  "parts": [
+    {
+      "id": "base",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "hub",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [0, 0, 4],
+          "radiusMm": 11.2,
+          "heightMm": 7.2,
+          "axis": "Z"
+        },
+        {
+          "id": "leg",
+          "operation": "union",
+          "kind": "box",
+          "originMm": [8, -4, 4],
+          "sizeMm": [25.6, 8, 4]
+        },
+        {
+          "id": "leg-end",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [33.6, 0, 4],
+          "radiusMm": 4.8,
+          "heightMm": 4,
+          "axis": "Z"
+        },
+        {
+          "id": "screw-hole",
+          "operation": "cut",
+          "kind": "hole",
+          "at": [33.6, 0, 8],
+          "direction": "-Z",
+          "diameterMm": 3.7,
+          "through": true
+        },
+        {
+          "id": "legs",
+          "operation": "union",
+          "kind": "pattern",
+          "of": "leg",
+          "polar": {
+            "count": 3,
+            "axis": "Z",
+            "totalDeg": 360
+          }
+        },
+        {
+          "id": "leg-ends",
+          "operation": "union",
+          "kind": "pattern",
+          "of": "leg-end",
+          "polar": {
+            "count": 3,
+            "axis": "Z",
+            "totalDeg": 360
+          }
+        },
+        {
+          "id": "screw-holes",
+          "operation": "cut",
+          "kind": "pattern",
+          "of": "screw-hole",
+          "polar": {
+            "count": 3,
+            "axis": "Z",
+            "totalDeg": 360
+          }
+        }
+      ]
+    },
+    {
+      "id": "leveling-screw-1",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "foot",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [0, 0, 0],
+          "radiusMm": 3.6,
+          "heightMm": 1.6,
+          "axis": "Z"
+        },
+        {
+          "id": "rod",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [0, 0, 1.6],
+          "radiusMm": 1.6,
+          "heightMm": 7.5,
+          "axis": "Z"
+        },
+        {
+          "id": "thumb-nut",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [0, 0, 8.3],
+          "radiusMm": 3.6,
+          "heightMm": 2.4,
+          "axis": "Z"
+        }
+      ]
+    },
+    {
+      "id": "leveling-screw-2",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "foot",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [0, 0, 0],
+          "radiusMm": 3.6,
+          "heightMm": 1.6,
+          "axis": "Z"
+        },
+        {
+          "id": "rod",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [0, 0, 1.6],
+          "radiusMm": 1.6,
+          "heightMm": 7.5,
+          "axis": "Z"
+        },
+        {
+          "id": "thumb-nut",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [0, 0, 8.3],
+          "radiusMm": 3.6,
+          "heightMm": 2.4,
+          "axis": "Z"
+        }
+      ]
+    },
+    {
+      "id": "leveling-screw-3",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "foot",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [0, 0, 0],
+          "radiusMm": 3.6,
+          "heightMm": 1.6,
+          "axis": "Z"
+        },
+        {
+          "id": "rod",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [0, 0, 1.6],
+          "radiusMm": 1.6,
+          "heightMm": 7.5,
+          "axis": "Z"
+        },
+        {
+          "id": "thumb-nut",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [0, 0, 8.3],
+          "radiusMm": 3.6,
+          "heightMm": 2.4,
+          "axis": "Z"
+        }
+      ]
+    },
+    {
+      "id": "pier",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "column",
+          "operation": "base",
+          "kind": "revolve",
+          "profileRzMm": [[0, 11.2], [9.6, 11.2], [9.6, 13.6], [6.4, 20.8], [5.6, 67.2], [7.2, 70.4], [7.2, 73.6], [8.8, 73.6], [8.8, 78.4], [0, 78.4]]
+        }
+      ]
+    },
+    {
+      "id": "pier-head",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "disc",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [0, 0, 78.4],
+          "radiusMm": 10.4,
+          "heightMm": 3.2,
+          "axis": "Z"
+        },
+        {
+          "id": "cheek",
+          "operation": "union",
+          "kind": "box",
+          "originMm": [-6.4, 8, 81.6],
+          "sizeMm": [12.8, 2.4, 7.2]
+        },
+        {
+          "id": "cheek-2",
+          "operation": "union",
+          "kind": "box",
+          "originMm": [-6.4, -10.4, 81.6],
+          "sizeMm": [12.8, 2.4, 7.2]
+        },
+        {
+          "id": "pivot-bore",
+          "operation": "cut",
+          "kind": "hole",
+          "at": [0, -16, 86],
+          "direction": "Y",
+          "diameterMm": 4.5,
+          "through": true
+        }
+      ]
+    },
+    {
+      "id": "polar-head",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "wedge",
+          "operation": "base",
+          "kind": "extrude",
+          "profile": {
+            "plane": "XZ",
+            "points": [[-12.8, 82.1], [12.8, 82.1], [12.8, 108.38], [-12.8, 86.9]]
+          },
+          "depthMm": 15.4
+        },
+        {
+          "id": "pivot-bore",
+          "operation": "cut",
+          "kind": "hole",
+          "at": [0, 0, 86],
+          "direction": "Y",
+          "diameterMm": 4.5,
+          "through": true
+        }
+      ]
+    },
+    {
+      "id": "latitude-pivot",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "pin",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [0, -12, 86],
+          "radiusMm": 2,
+          "heightMm": 24,
+          "axis": "Y"
+        },
+        {
+          "id": "head",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [0, -12.7, 86],
+          "radiusMm": 3.2,
+          "heightMm": 2,
+          "axis": "Y"
+        }
+      ]
+    },
+    {
+      "id": "latitude-knob",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "hub",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [0, 10.7, 86],
+          "radiusMm": 3.2,
+          "heightMm": 3.2,
+          "axis": "Y"
+        },
+        {
+          "id": "wing",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [-7.2, 12.3, 86],
+          "radiusMm": 1.28,
+          "heightMm": 14.4,
+          "axis": "X"
+        },
+        {
+          "id": "thread",
+          "operation": "cut",
+          "kind": "hole",
+          "at": [0, 10.7, 86],
+          "direction": "Y",
+          "diameterMm": 4.5,
+          "depthMm": 1.8
+        }
+      ]
+    },
+    {
+      "id": "polar-housing",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "sleeve",
+          "operation": "base",
+          "kind": "revolve",
+          "profileRzMm": [[3.45, -20.8], [8.8, -20.8], [8.8, -18.4], [7.2, -18.4], [7.2, 18.4], [8.8, 18.4], [8.8, 20.8], [3.45, 20.8]]
+        }
+      ]
+    },
+    {
+      "id": "polar-axis",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "shaft",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [0, 0, -30.4],
+          "radiusMm": 3.2,
+          "heightMm": 54.4,
+          "axis": "Z"
+        }
+      ]
+    },
+    {
+      "id": "ra-worm-wheel",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "disc",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [0, 0, -24],
+          "radiusMm": 10.4,
+          "heightMm": 2.4,
+          "axis": "Z"
+        },
+        {
+          "id": "hub",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [0, 0, -24.8],
+          "radiusMm": 5.2,
+          "heightMm": 3.2,
+          "axis": "Z"
+        },
+        {
+          "id": "tooth",
+          "operation": "union",
+          "kind": "box",
+          "originMm": [9.9, -0.64, -24],
+          "sizeMm": [2.1, 1.28, 2.4]
+        },
+        {
+          "id": "teeth",
+          "operation": "union",
+          "kind": "pattern",
+          "of": "tooth",
+          "polar": {
+            "count": 30,
+            "axis": "Z",
+            "totalDeg": 360
+          }
+        },
+        {
+          "id": "bore",
+          "operation": "cut",
+          "kind": "hole",
+          "at": [0, 0, -24.8],
+          "direction": "Z",
+          "diameterMm": 6.9,
+          "through": true
+        }
+      ]
+    },
+    {
+      "id": "hour-circle",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "disc",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [0, 0, -28.4],
+          "radiusMm": 12.8,
+          "heightMm": 2,
+          "axis": "Z"
+        },
+        {
+          "id": "hub",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [0, 0, -29.2],
+          "radiusMm": 5.2,
+          "heightMm": 2.8,
+          "axis": "Z"
+        },
+        {
+          "id": "tick",
+          "operation": "cut",
+          "kind": "box",
+          "originMm": [11.84, -0.32, -29.4],
+          "sizeMm": [1.6, 0.64, 4]
+        },
+        {
+          "id": "ticks",
+          "operation": "cut",
+          "kind": "pattern",
+          "of": "tick",
+          "polar": {
+            "count": 24,
+            "axis": "Z",
+            "totalDeg": 360
+          }
+        },
+        {
+          "id": "bore",
+          "operation": "cut",
+          "kind": "hole",
+          "at": [0, 0, -29.2],
+          "direction": "Z",
+          "diameterMm": 6.9,
+          "through": true
+        }
+      ]
+    },
+    {
+      "id": "ra-worm",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "core",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [-15.1, -8, -22.8],
+          "radiusMm": 2,
+          "heightMm": 16,
+          "axis": "Y"
+        },
+        {
+          "id": "thread",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [-15.1, -5.2, -22.8],
+          "radiusMm": 2.8,
+          "heightMm": 0.96,
+          "axis": "Y"
+        },
+        {
+          "id": "threads",
+          "operation": "union",
+          "kind": "pattern",
+          "of": "thread",
+          "linear": {
+            "countX": 7,
+            "stepMm": [0, 1.6, 0]
+          }
+        },
+        {
+          "id": "shaft",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [-15.1, -19.2, -22.8],
+          "radiusMm": 1.2,
+          "heightMm": 29.6,
+          "axis": "Y"
+        }
+      ]
+    },
+    {
+      "id": "ra-worm-bracket",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "plate",
+          "operation": "base",
+          "kind": "box",
+          "originMm": [-17.9, -10.1, -18.16],
+          "sizeMm": [10.4, 20.2, 4.8]
+        },
+        {
+          "id": "lug",
+          "operation": "union",
+          "kind": "box",
+          "originMm": [-17.9, 8.5, -25.2],
+          "sizeMm": [5.6, 1.6, 7.14]
+        },
+        {
+          "id": "lug-2",
+          "operation": "union",
+          "kind": "box",
+          "originMm": [-17.9, -10.1, -25.2],
+          "sizeMm": [5.6, 1.6, 7.14]
+        },
+        {
+          "id": "bearing",
+          "operation": "cut",
+          "kind": "hole",
+          "at": [-15.1, -16, -22.8],
+          "direction": "Y",
+          "diameterMm": 2.9,
+          "through": true
+        }
+      ]
+    },
+    {
+      "id": "ra-handle",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "hub",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [-15.1, -22.4, -22.8],
+          "radiusMm": 2.4,
+          "heightMm": 4.5,
+          "axis": "Y"
+        },
+        {
+          "id": "bore",
+          "operation": "cut",
+          "kind": "hole",
+          "at": [-15.1, -17.9, -22.8],
+          "direction": "-Y",
+          "diameterMm": 2.9,
+          "depthMm": 2
+        },
+        {
+          "id": "crank",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [-15.1, -21.2, -30],
+          "radiusMm": 0.96,
+          "heightMm": 7.2,
+          "axis": "Z"
+        },
+        {
+          "id": "grip",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [-15.1, -21.2, -33.2],
+          "radiusMm": 1.6,
+          "heightMm": 4,
+          "axis": "Z"
+        }
+      ]
+    },
+    {
+      "id": "dec-housing",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "boss",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [0, 0, 21.6],
+          "radiusMm": 5.6,
+          "heightMm": 8,
+          "axis": "Z"
+        },
+        {
+          "id": "axis-bore",
+          "operation": "cut",
+          "kind": "hole",
+          "at": [0, 0, 21.6],
+          "direction": "Z",
+          "diameterMm": 6.9,
+          "depthMm": 3.2
+        },
+        {
+          "id": "sleeve",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [0, -16, 36],
+          "radiusMm": 7.2,
+          "heightMm": 32,
+          "axis": "Y"
+        },
+        {
+          "id": "flange",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [0, -16, 36],
+          "radiusMm": 8.8,
+          "heightMm": 2.4,
+          "axis": "Y"
+        },
+        {
+          "id": "flange-2",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [0, 13.6, 36],
+          "radiusMm": 8.8,
+          "heightMm": 2.4,
+          "axis": "Y"
+        },
+        {
+          "id": "dec-bore",
+          "operation": "cut",
+          "kind": "hole",
+          "at": [0, -16, 36],
+          "direction": "Y",
+          "diameterMm": 6.9,
+          "through": true
+        }
+      ]
+    },
+    {
+      "id": "dec-axis",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "shaft",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [0, 0, -22.4],
+          "radiusMm": 3.2,
+          "heightMm": 44.8,
+          "axis": "Z"
+        }
+      ]
+    },
+    {
+      "id": "dec-worm-wheel",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "disc",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [0, 0, -19.6],
+          "radiusMm": 10.4,
+          "heightMm": 2.4,
+          "axis": "Z"
+        },
+        {
+          "id": "hub",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [0, 0, -20.4],
+          "radiusMm": 5.2,
+          "heightMm": 3.2,
+          "axis": "Z"
+        },
+        {
+          "id": "tooth",
+          "operation": "union",
+          "kind": "box",
+          "originMm": [9.9, -0.64, -19.6],
+          "sizeMm": [2.1, 1.28, 2.4]
+        },
+        {
+          "id": "teeth",
+          "operation": "union",
+          "kind": "pattern",
+          "of": "tooth",
+          "polar": {
+            "count": 30,
+            "axis": "Z",
+            "totalDeg": 360
+          }
+        },
+        {
+          "id": "bore",
+          "operation": "cut",
+          "kind": "hole",
+          "at": [0, 0, -20.4],
+          "direction": "Z",
+          "diameterMm": 6.9,
+          "through": true
+        }
+      ]
+    },
+    {
+      "id": "dec-circle",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "disc",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [0, 0, 17.2],
+          "radiusMm": 12,
+          "heightMm": 1.6,
+          "axis": "Z"
+        },
+        {
+          "id": "hub",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [0, 0, 16.4],
+          "radiusMm": 5.2,
+          "heightMm": 2.4,
+          "axis": "Z"
+        },
+        {
+          "id": "tick",
+          "operation": "cut",
+          "kind": "box",
+          "originMm": [11.04, -0.32, 16.2],
+          "sizeMm": [1.6, 0.64, 3.6]
+        },
+        {
+          "id": "ticks",
+          "operation": "cut",
+          "kind": "pattern",
+          "of": "tick",
+          "polar": {
+            "count": 24,
+            "axis": "Z",
+            "totalDeg": 360
+          }
+        },
+        {
+          "id": "bore",
+          "operation": "cut",
+          "kind": "hole",
+          "at": [0, 0, 16.4],
+          "direction": "Z",
+          "diameterMm": 6.9,
+          "through": true
+        }
+      ]
+    },
+    {
+      "id": "counterweight-rod",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "rod",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [0, 0, -51.2],
+          "radiusMm": 2.8,
+          "heightMm": 28.5,
+          "axis": "Z"
+        }
+      ]
+    },
+    {
+      "id": "lock-collar",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "ring",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [0, 0, -32.8],
+          "radiusMm": 4.8,
+          "heightMm": 2.4,
+          "axis": "Z"
+        },
+        {
+          "id": "bore",
+          "operation": "cut",
+          "kind": "hole",
+          "at": [0, 0, -32.8],
+          "direction": "Z",
+          "diameterMm": 6.1,
+          "through": true
+        },
+        {
+          "id": "set-screw",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [4.4, 0, -31.6],
+          "radiusMm": 0.96,
+          "heightMm": 2.4,
+          "axis": "X"
+        }
+      ]
+    },
+    {
+      "id": "counterweight-1",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "weight",
+          "operation": "base",
+          "kind": "revolve",
+          "profileRzMm": [[3.05, -40], [8, -40], [8.8, -39.2], [8.8, -34.4], [8, -33.6], [3.05, -33.6]]
+        }
+      ]
+    },
+    {
+      "id": "counterweight-2",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "weight",
+          "operation": "base",
+          "kind": "revolve",
+          "profileRzMm": [[3.05, -47.2], [8, -47.2], [8.8, -46.4], [8.8, -41.6], [8, -40.8], [3.05, -40.8]]
+        }
+      ]
+    },
+    {
+      "id": "dec-worm",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "core",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [-8, -15.1, -18.4],
+          "radiusMm": 2,
+          "heightMm": 16,
+          "axis": "X"
+        },
+        {
+          "id": "thread",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [-5.2, -15.1, -18.4],
+          "radiusMm": 2.8,
+          "heightMm": 0.96,
+          "axis": "X"
+        },
+        {
+          "id": "threads",
+          "operation": "union",
+          "kind": "pattern",
+          "of": "thread",
+          "linear": {
+            "countX": 7,
+            "stepMm": [1.6, 0, 0]
+          }
+        },
+        {
+          "id": "rod",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [7.2, -15.1, -18.4],
+          "radiusMm": 1.2,
+          "heightMm": 55.2,
+          "axis": "X"
+        }
+      ]
+    },
+    {
+      "id": "dec-handle",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "hub",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [60, -15.1, -18.4],
+          "radiusMm": 2.4,
+          "heightMm": 4,
+          "axis": "X"
+        },
+        {
+          "id": "wheel",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [62, -15.1, -18.4],
+          "radiusMm": 5.6,
+          "heightMm": 1.6,
+          "axis": "X"
+        },
+        {
+          "id": "grip",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [63.6, -19.1, -18.4],
+          "radiusMm": 0.96,
+          "heightMm": 4,
+          "axis": "X"
+        },
+        {
+          "id": "bore",
+          "operation": "cut",
+          "kind": "hole",
+          "at": [60, -15.1, -18.4],
+          "direction": "X",
+          "diameterMm": 2.9,
+          "depthMm": 2.7
+        }
+      ]
+    },
+    {
+      "id": "cradle",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "plate",
+          "operation": "base",
+          "kind": "box",
+          "originMm": [-4.8, -19.16, -27.2],
+          "sizeMm": [9.6, 4.8, 54.4]
+        },
+        {
+          "id": "boss",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [0, -25.56, 0],
+          "radiusMm": 5.2,
+          "heightMm": 6.9,
+          "axis": "Y"
+        },
+        {
+          "id": "bore",
+          "operation": "cut",
+          "kind": "hole",
+          "at": [0, -25.56, 0],
+          "direction": "Y",
+          "diameterMm": 6.9,
+          "depthMm": 4
+        },
+        {
+          "id": "screw-hole",
+          "operation": "cut",
+          "kind": "hole",
+          "at": [0, -19.16, 20],
+          "direction": "Y",
+          "diameterMm": 2.58,
+          "through": true
+        },
+        {
+          "id": "screw-hole-2",
+          "operation": "cut",
+          "kind": "hole",
+          "at": [0, -19.16, -20],
+          "direction": "Y",
+          "diameterMm": 2.58,
+          "through": true
+        }
+      ]
+    },
+    {
+      "id": "tube-band-1",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "ring",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [0, 0, 17.6],
+          "radiusMm": 14.06,
+          "heightMm": 4.8,
+          "axis": "Z"
+        },
+        {
+          "id": "foot",
+          "operation": "union",
+          "kind": "box",
+          "originMm": [-4, -14.26, 17.6],
+          "sizeMm": [8, 1.62, 4.8]
+        },
+        {
+          "id": "seat",
+          "operation": "cut",
+          "kind": "cylinder",
+          "centerMm": [0, 0, 16.6],
+          "radiusMm": 12.3,
+          "heightMm": 6.8,
+          "axis": "Z"
+        },
+        {
+          "id": "thread",
+          "operation": "cut",
+          "kind": "hole",
+          "at": [0, -14.26, 20],
+          "direction": "Y",
+          "diameterMm": 2.58,
+          "depthMm": 1.2
+        }
+      ]
+    },
+    {
+      "id": "band-screw-1",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "head",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [0, -21.36, 20],
+          "radiusMm": 2.08,
+          "heightMm": 2,
+          "axis": "Y"
+        },
+        {
+          "id": "rod",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [0, -19.36, 20],
+          "radiusMm": 1.04,
+          "heightMm": 6.2,
+          "axis": "Y"
+        }
+      ]
+    },
+    {
+      "id": "tube-band-2",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "ring",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [0, 0, -22.4],
+          "radiusMm": 14.06,
+          "heightMm": 4.8,
+          "axis": "Z"
+        },
+        {
+          "id": "foot",
+          "operation": "union",
+          "kind": "box",
+          "originMm": [-4, -14.26, -22.4],
+          "sizeMm": [8, 1.62, 4.8]
+        },
+        {
+          "id": "seat",
+          "operation": "cut",
+          "kind": "cylinder",
+          "centerMm": [0, 0, -23.4],
+          "radiusMm": 12.3,
+          "heightMm": 6.8,
+          "axis": "Z"
+        },
+        {
+          "id": "thread",
+          "operation": "cut",
+          "kind": "hole",
+          "at": [0, -14.26, -20],
+          "direction": "Y",
+          "diameterMm": 2.58,
+          "depthMm": 1.2
+        }
+      ]
+    },
+    {
+      "id": "band-screw-2",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "head",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [0, -21.36, -20],
+          "radiusMm": 2.08,
+          "heightMm": 2,
+          "axis": "Y"
+        },
+        {
+          "id": "rod",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [0, -19.36, -20],
+          "radiusMm": 1.04,
+          "heightMm": 6.2,
+          "axis": "Y"
+        }
+      ]
+    },
+    {
+      "id": "main-tube",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "tube",
+          "operation": "base",
+          "kind": "revolve",
+          "profileRzMm": [[0, -72], [12, -72], [12, 64], [0, 64]]
+        }
+      ]
+    },
+    {
+      "id": "objective-cell",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "cell",
+          "operation": "base",
+          "kind": "revolve",
+          "profileRzMm": [[12.3, 57.6], [13.5, 57.6], [13.5, 68.8], [9.6, 68.8], [9.6, 67.2], [12.3, 67.2]]
+        }
+      ]
+    },
+    {
+      "id": "objective-lens",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "lens",
+          "operation": "base",
+          "kind": "revolve",
+          "profileRzMm": [[0, 64.3], [12, 64.3], [12, 66.9], [0, 66.9]]
+        }
+      ]
+    },
+    {
+      "id": "dew-shield",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "shield",
+          "operation": "base",
+          "kind": "revolve",
+          "profileRzMm": [[13.8, 62.4], [15, 62.4], [15, 107.2], [15.8, 107.2], [15.8, 112], [13.8, 112]]
+        }
+      ]
+    },
+    {
+      "id": "focuser-body",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "cell",
+          "operation": "base",
+          "kind": "revolve",
+          "profileRzMm": [[12.3, -68.8], [13.26, -68.8], [13.26, -76.8], [6.8, -76.8], [6.8, -89.6], [5.1, -89.6], [5.1, -74.7], [12.3, -74.7]]
+        },
+        {
+          "id": "rack-housing",
+          "operation": "union",
+          "kind": "box",
+          "originMm": [-11.2, -2.4, -89.6],
+          "sizeMm": [4.8, 4.8, 11.2]
+        },
+        {
+          "id": "pinion-bore",
+          "operation": "cut",
+          "kind": "hole",
+          "at": [-8.8, -8, -84],
+          "direction": "Y",
+          "diameterMm": 2.42,
+          "through": true
+        }
+      ]
+    },
+    {
+      "id": "pinion-shaft",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "shaft",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [-8.8, -4.8, -84],
+          "radiusMm": 0.96,
+          "heightMm": 9.6,
+          "axis": "Y"
+        }
+      ]
+    },
+    {
+      "id": "focus-knob-1",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "neck",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [-8.8, 2.7, -84],
+          "radiusMm": 2.16,
+          "heightMm": 0.8,
+          "axis": "Y"
+        },
+        {
+          "id": "knob",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [-8.8, 3.5, -84],
+          "radiusMm": 2.8,
+          "heightMm": 3.2,
+          "axis": "Y"
+        },
+        {
+          "id": "bore",
+          "operation": "cut",
+          "kind": "hole",
+          "at": [-8.8, 2.7, -84],
+          "direction": "Y",
+          "diameterMm": 2.42,
+          "depthMm": 2.6
+        }
+      ]
+    },
+    {
+      "id": "focus-knob-2",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "neck",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [-8.8, -3.5, -84],
+          "radiusMm": 2.16,
+          "heightMm": 0.8,
+          "axis": "Y"
+        },
+        {
+          "id": "knob",
+          "operation": "union",
+          "kind": "cylinder",
+          "centerMm": [-8.8, -6.7, -84],
+          "radiusMm": 2.8,
+          "heightMm": 3.2,
+          "axis": "Y"
+        },
+        {
+          "id": "bore",
+          "operation": "cut",
+          "kind": "hole",
+          "at": [-8.8, -2.7, -84],
+          "direction": "-Y",
+          "diameterMm": 2.42,
+          "depthMm": 2.6
+        }
+      ]
+    },
+    {
+      "id": "drawtube",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "drawtube",
+          "operation": "base",
+          "kind": "revolve",
+          "profileRzMm": [[0, -80], [4.8, -80], [4.8, -99.2], [5.6, -99.2], [5.6, -102.4], [3.52, -102.4], [3.52, -83.2], [0, -83.2]]
+        }
+      ]
+    },
+    {
+      "id": "eyepiece",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "eyepiece",
+          "operation": "base",
+          "kind": "revolve",
+          "profileRzMm": [[0, -84.8], [3.22, -84.8], [3.22, -102.7], [4.4, -102.7], [4.4, -108.8], [5.2, -108.8], [5.2, -112.8], [3.2, -112.8], [3.2, -111.6], [0, -111.6]]
+        }
+      ]
+    },
+    {
+      "id": "finder-tube",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "body",
+          "operation": "base",
+          "kind": "revolve",
+          "profileRzMm": [[0, -14.4], [3.2, -14.4], [3.2, 29.6], [4, 29.6], [4, 33.6], [0, 33.6]]
+        }
+      ]
+    },
+    {
+      "id": "finder-eyepiece",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "eyepiece",
+          "operation": "base",
+          "kind": "revolve",
+          "profileRzMm": [[0, -21.6], [2.4, -21.6], [2.4, -17.6], [1.6, -17.6], [1.6, -14.7], [0, -14.7]]
+        }
+      ]
+    },
+    {
+      "id": "finder-bracket-1",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "ring",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [0, 0, 1.6],
+          "radiusMm": 4.64,
+          "heightMm": 2.4,
+          "axis": "Z"
+        },
+        {
+          "id": "post",
+          "operation": "union",
+          "kind": "box",
+          "originMm": [-8.4, -1.2, 1.6],
+          "sizeMm": [4.4, 2.4, 2.4]
+        },
+        {
+          "id": "pad",
+          "operation": "union",
+          "kind": "box",
+          "originMm": [-8.4, -2.4, 1.6],
+          "sizeMm": [0.96, 4.8, 2.4]
+        },
+        {
+          "id": "seat",
+          "operation": "cut",
+          "kind": "cylinder",
+          "centerMm": [0, 0, 0.6],
+          "radiusMm": 3.5,
+          "heightMm": 4.4,
+          "axis": "Z"
+        }
+      ]
+    },
+    {
+      "id": "finder-bracket-2",
+      "construction": "solid",
+      "features": [
+        {
+          "id": "ring",
+          "operation": "base",
+          "kind": "cylinder",
+          "centerMm": [0, 0, 24],
+          "radiusMm": 4.64,
+          "heightMm": 2.4,
+          "axis": "Z"
+        },
+        {
+          "id": "post",
+          "operation": "union",
+          "kind": "box",
+          "originMm": [-8.4, -1.2, 24],
+          "sizeMm": [4.4, 2.4, 2.4]
+        },
+        {
+          "id": "pad",
+          "operation": "union",
+          "kind": "box",
+          "originMm": [-8.4, -2.4, 24],
+          "sizeMm": [0.96, 4.8, 2.4]
+        },
+        {
+          "id": "seat",
+          "operation": "cut",
+          "kind": "cylinder",
+          "centerMm": [0, 0, 23],
+          "radiusMm": 3.5,
+          "heightMm": 4.4,
+          "axis": "Z"
+        }
+      ]
+    }
+  ],
+  "placement": [
+    {
+      "part": "leveling-screw-1",
+      "translateMm": [33.6, 0, 0],
+      "rotateDeg": [0, 0, 0]
+    },
+    {
+      "part": "leveling-screw-2",
+      "translateMm": [-16.8, 29.1, 0],
+      "rotateDeg": [0, 0, 120]
+    },
+    {
+      "part": "leveling-screw-3",
+      "translateMm": [-16.8, -29.1, 0],
+      "rotateDeg": [0, 0, 240]
+    },
+    {
+      "part": "polar-head",
+      "translateMm": [0, -7.7, 0],
+      "rotateDeg": [0, 0, 0]
+    },
+    {
+      "part": "polar-housing",
+      "translateMm": [-4.82, 0, 103.39],
+      "rotateDeg": [0, 50, 0]
+    },
+    {
+      "part": "polar-axis",
+      "translateMm": [-4.82, 0, 103.39],
+      "rotateDeg": [0, 50, 0]
+    },
+    {
+      "part": "ra-worm-wheel",
+      "translateMm": [-4.82, 0, 103.39],
+      "rotateDeg": [0, 50, 0]
+    },
+    {
+      "part": "hour-circle",
+      "translateMm": [-4.82, 0, 103.39],
+      "rotateDeg": [0, 50, 0]
+    },
+    {
+      "part": "ra-worm",
+      "translateMm": [-4.82, 0, 103.39],
+      "rotateDeg": [0, 50, 0]
+    },
+    {
+      "part": "ra-worm-bracket",
+      "translateMm": [-4.82, 0, 103.39],
+      "rotateDeg": [0, 50, 0]
+    },
+    {
+      "part": "ra-handle",
+      "translateMm": [-4.82, 0, 103.39],
+      "rotateDeg": [0, 50, 0]
+    },
+    {
+      "part": "dec-housing",
+      "translateMm": [-4.82, 0, 103.39],
+      "rotateDeg": [0, 50, 0]
+    },
+    {
+      "part": "dec-axis",
+      "translateMm": [22.76, 0, 126.53],
+      "rotateDeg": [-90, 50, 0]
+    },
+    {
+      "part": "dec-worm-wheel",
+      "translateMm": [22.76, 0, 126.53],
+      "rotateDeg": [-90, 50, 0]
+    },
+    {
+      "part": "dec-circle",
+      "translateMm": [22.76, 0, 126.53],
+      "rotateDeg": [-90, 50, 0]
+    },
+    {
+      "part": "counterweight-rod",
+      "translateMm": [22.76, 0, 126.53],
+      "rotateDeg": [-90, 50, 0]
+    },
+    {
+      "part": "lock-collar",
+      "translateMm": [22.76, 0, 126.53],
+      "rotateDeg": [-90, 50, 0]
+    },
+    {
+      "part": "counterweight-1",
+      "translateMm": [22.76, 0, 126.53],
+      "rotateDeg": [-90, 50, 0]
+    },
+    {
+      "part": "counterweight-2",
+      "translateMm": [22.76, 0, 126.53],
+      "rotateDeg": [-90, 50, 0]
+    },
+    {
+      "part": "dec-worm",
+      "translateMm": [22.76, 0, 126.53],
+      "rotateDeg": [-90, 50, 0]
+    },
+    {
+      "part": "dec-handle",
+      "translateMm": [22.76, 0, 126.53],
+      "rotateDeg": [-90, 50, 0]
+    },
+    {
+      "part": "cradle",
+      "translateMm": [22.76, 45.46, 126.53],
+      "rotateDeg": [0, -55, 0]
+    },
+    {
+      "part": "tube-band-1",
+      "translateMm": [22.76, 45.46, 126.53],
+      "rotateDeg": [0, -55, 0]
+    },
+    {
+      "part": "band-screw-1",
+      "translateMm": [22.76, 45.46, 126.53],
+      "rotateDeg": [0, -55, 0]
+    },
+    {
+      "part": "tube-band-2",
+      "translateMm": [22.76, 45.46, 126.53],
+      "rotateDeg": [0, -55, 0]
+    },
+    {
+      "part": "band-screw-2",
+      "translateMm": [22.76, 45.46, 126.53],
+      "rotateDeg": [0, -55, 0]
+    },
+    {
+      "part": "main-tube",
+      "translateMm": [22.76, 45.46, 126.53],
+      "rotateDeg": [0, -55, 0]
+    },
+    {
+      "part": "objective-cell",
+      "translateMm": [22.76, 45.46, 126.53],
+      "rotateDeg": [0, -55, 0]
+    },
+    {
+      "part": "objective-lens",
+      "translateMm": [22.76, 45.46, 126.53],
+      "rotateDeg": [0, -55, 0]
+    },
+    {
+      "part": "dew-shield",
+      "translateMm": [22.76, 45.46, 126.53],
+      "rotateDeg": [0, -55, 0]
+    },
+    {
+      "part": "focuser-body",
+      "translateMm": [22.76, 45.46, 126.53],
+      "rotateDeg": [0, -55, 0]
+    },
+    {
+      "part": "pinion-shaft",
+      "translateMm": [22.76, 45.46, 126.53],
+      "rotateDeg": [0, -55, 0]
+    },
+    {
+      "part": "focus-knob-1",
+      "translateMm": [22.76, 45.46, 126.53],
+      "rotateDeg": [0, -55, 0]
+    },
+    {
+      "part": "focus-knob-2",
+      "translateMm": [22.76, 45.46, 126.53],
+      "rotateDeg": [0, -55, 0]
+    },
+    {
+      "part": "drawtube",
+      "translateMm": [22.76, 45.46, 126.53],
+      "rotateDeg": [0, -55, 0]
+    },
+    {
+      "part": "eyepiece",
+      "translateMm": [22.76, 45.46, 126.53],
+      "rotateDeg": [0, -55, 0]
+    },
+    {
+      "part": "finder-tube",
+      "translateMm": [34.69, 45.46, 143.56],
+      "rotateDeg": [0, -55, 0]
+    },
+    {
+      "part": "finder-eyepiece",
+      "translateMm": [34.69, 45.46, 143.56],
+      "rotateDeg": [0, -55, 0]
+    },
+    {
+      "part": "finder-bracket-1",
+      "translateMm": [34.69, 45.46, 143.56],
+      "rotateDeg": [0, -55, 0]
+    },
+    {
+      "part": "finder-bracket-2",
+      "translateMm": [34.69, 45.46, 143.56],
+      "rotateDeg": [0, -55, 0]
+    }
+  ],
+  "dimensions": [
+    {
+      "label": "Main tube length (reference)",
+      "valueMm": 136,
+      "origin": "assumed",
+      "part": "main-tube",
+      "span": "height"
+    },
+    {
+      "label": "Main tube diameter",
+      "valueMm": 24,
+      "origin": "assumed",
+      "part": "main-tube",
+      "span": "width"
+    },
+    {
+      "label": "Dew shield length",
+      "valueMm": 49.6,
+      "origin": "assumed",
+      "part": "dew-shield",
+      "span": "height"
+    },
+    {
+      "label": "Pier height",
+      "valueMm": 67.2,
+      "origin": "assumed",
+      "part": "pier",
+      "span": "height"
+    },
+    {
+      "label": "Polar axis diameter",
+      "valueMm": 6.4,
+      "origin": "assumed",
+      "part": "polar-axis",
+      "feature": "shaft"
+    },
+    {
+      "label": "Declination axis diameter",
+      "valueMm": 6.4,
+      "origin": "assumed",
+      "part": "dec-axis",
+      "feature": "shaft"
+    },
+    {
+      "label": "Shaft bore diameter",
+      "valueMm": 6.9,
+      "origin": "assumed",
+      "part": "dec-housing",
+      "feature": "dec-bore"
+    },
+    {
+      "label": "Hour circle diameter",
+      "valueMm": 25.6,
+      "origin": "assumed",
+      "part": "hour-circle",
+      "feature": "disc"
+    },
+    {
+      "label": "Declination circle diameter",
+      "valueMm": 24,
+      "origin": "assumed",
+      "part": "dec-circle",
+      "feature": "disc"
+    },
+    {
+      "label": "Worm wheel disc diameter",
+      "valueMm": 20.8,
+      "origin": "assumed",
+      "part": "ra-worm-wheel",
+      "feature": "disc"
+    },
+    {
+      "label": "Counterweight rod diameter",
+      "valueMm": 5.6,
+      "origin": "assumed",
+      "part": "counterweight-rod",
+      "feature": "rod"
+    },
+    {
+      "label": "Leveling screw diameter",
+      "valueMm": 3.2,
+      "origin": "assumed",
+      "part": "leveling-screw-1",
+      "feature": "rod"
+    },
+    {
+      "label": "Latitude pivot diameter",
+      "valueMm": 4,
+      "origin": "assumed",
+      "part": "latitude-pivot",
+      "feature": "pin"
+    }
+  ],
+  "bom": [
+    {"item": 1, "name": "받침대", "nameEn": "tripod base",
+     "parts": ["base"],
+     "material": "주철, 흑색 에나멜", "kind": "cast-iron", "size": "60 × 68 × 7.2",
+     "role": "세 다리로 기둥과 적도의 전체를 받친다"},
+    {"item": 2, "name": "수평 나사", "nameEn": "leveling screw",
+     "parts": ["leveling-screw-1", "leveling-screw-2", "leveling-screw-3"],
+     "material": "강철, 니켈 도금", "kind": "steel", "size": "Ø7.2 × 10.7",
+     "role": "다리 끝에서 돌려 받침대를 수평으로 맞춘다"},
+    {"item": 3, "name": "기둥", "nameEn": "pier",
+     "parts": ["pier"],
+     "material": "주철, 선반 가공 · 흑색 에나멜", "kind": "cast-iron", "size": "Ø19.2 × 67.2",
+     "role": "적도의를 관측 높이까지 들어 올린다"},
+    {"item": 4, "name": "기둥 머리", "nameEn": "pier head",
+     "parts": ["pier-head"],
+     "material": "주철, 흑색 에나멜", "kind": "cast-iron", "size": "Ø20.8 × 10.4",
+     "role": "두 볼 사이에 위도 피벗을 품는다"},
+    {"item": 5, "name": "극축 쐐기", "nameEn": "polar wedge",
+     "parts": ["polar-head"],
+     "material": "주철, 흑색 에나멜", "kind": "cast-iron", "size": "25.6 × 15.4 × 26.3",
+     "role": "극축을 위도 40°로 기울여 천구의 북극을 겨눈다"},
+    {"item": 6, "name": "위도 피벗 핀", "nameEn": "latitude pivot",
+     "parts": ["latitude-pivot"],
+     "material": "강철, 블루잉", "kind": "steel", "size": "Ø6.4 × 24.7",
+     "role": "쐐기가 관측지 위도에 맞춰 기우는 회전축"},
+    {"item": 7, "name": "위도 고정 손잡이", "nameEn": "latitude clamp knob",
+     "parts": ["latitude-knob"],
+     "material": "황동, 래커", "kind": "brass", "size": "14.4 × 3.2 × 6.4",
+     "role": "맞춘 위도각을 조여 고정한다"},
+    {"item": 8, "name": "극축 슬리브", "nameEn": "polar axis sleeve",
+     "parts": ["polar-housing"],
+     "material": "주철, 흑색 에나멜 · 황동 부싱", "kind": "cast-iron", "size": "Ø17.6 × 41.6",
+     "role": "극축을 감싸 받치는 베어링 통"},
+    {"item": 9, "name": "극축", "nameEn": "polar axis",
+     "parts": ["polar-axis"],
+     "material": "강철, 연마", "kind": "steel", "size": "Ø6.4 × 54.4",
+     "role": "지구 자전축과 나란히 도는 적경축"},
+    {"item": 10, "name": "적경 웜 휠", "nameEn": "RA worm wheel",
+     "parts": ["ra-worm-wheel"],
+     "material": "황동, 치형 30개 절삭", "kind": "brass", "size": "Ø24 × 3.2",
+     "role": "웜과 물려 극축을 하루 한 바퀴 속도로 돌린다"},
+    {"item": 11, "name": "시간환", "nameEn": "hour circle",
+     "parts": ["hour-circle"],
+     "material": "황동, 은도금 눈금", "kind": "brass", "size": "Ø25.6 × 2.8",
+     "role": "적경을 시·분으로 읽는 눈금 원판"},
+    {"item": 12, "name": "적경 웜", "nameEn": "RA worm",
+     "parts": ["ra-worm"],
+     "material": "강철, 연마", "kind": "steel", "size": "Ø5.6 × 29.6",
+     "role": "한 바퀴에 휠을 한 이씩 밀어 별을 따라간다"},
+    {"item": 13, "name": "적경 웜 브래킷", "nameEn": "RA worm bracket",
+     "parts": ["ra-worm-bracket"],
+     "material": "주철, 흑색 에나멜", "kind": "cast-iron", "size": "10.4 × 20.2 × 11.8",
+     "role": "웜 축을 휠에 맞물린 채 받친다"},
+    {"item": 14, "name": "적경 미동 손잡이", "nameEn": "RA slow-motion handle",
+     "parts": ["ra-handle"],
+     "material": "황동, 흑단 손잡이", "kind": "brass", "size": "4.8 × 4.9 × 12.8",
+     "role": "손끝으로 돌려 적경을 미세하게 맞춘다"},
+    {"item": 15, "name": "적위축 하우징", "nameEn": "declination housing",
+     "parts": ["dec-housing"],
+     "material": "주철, 흑색 에나멜", "kind": "cast-iron", "size": "17.6 × 32 × 23.2",
+     "role": "극축 끝에서 적위축을 직각으로 받친다"},
+    {"item": 16, "name": "적위축", "nameEn": "declination axis",
+     "parts": ["dec-axis"],
+     "material": "강철, 연마", "kind": "steel", "size": "Ø6.4 × 44.8",
+     "role": "경통을 남북으로 기울이는 축"},
+    {"item": 17, "name": "적위 웜 휠", "nameEn": "Dec worm wheel",
+     "parts": ["dec-worm-wheel"],
+     "material": "황동, 치형 30개 절삭", "kind": "brass", "size": "Ø24 × 3.2",
+     "role": "적위 웜과 물려 적위축을 돌린다"},
+    {"item": 18, "name": "적위환", "nameEn": "declination circle",
+     "parts": ["dec-circle"],
+     "material": "황동, 은도금 눈금", "kind": "brass", "size": "Ø24 × 2.4",
+     "role": "적위를 도 단위로 읽는 눈금 원판"},
+    {"item": 19, "name": "균형추 막대", "nameEn": "counterweight rod",
+     "parts": ["counterweight-rod"],
+     "material": "강철, 니켈 도금", "kind": "steel", "size": "Ø5.6 × 28.5",
+     "role": "경통 반대편으로 뻗어 균형추를 단다"},
+    {"item": 20, "name": "고정 칼라", "nameEn": "lock collar",
+     "parts": ["lock-collar"],
+     "material": "황동, 래커", "kind": "brass", "size": "Ø11.6 × 2.4",
+     "role": "균형추가 막대에서 빠지지 않게 막는다"},
+    {"item": 21, "name": "균형추", "nameEn": "counterweight",
+     "parts": ["counterweight-1", "counterweight-2"],
+     "material": "주철, 흑색 에나멜", "kind": "cast-iron", "size": "Ø17.6 × 6.4",
+     "role": "경통 무게와 맞서 어느 각도에서도 멈춰 서게 한다"},
+    {"item": 22, "name": "적위 웜 · 미동 막대", "nameEn": "Dec worm with slow-motion rod",
+     "parts": ["dec-worm"],
+     "material": "강철, 연마", "kind": "steel", "size": "Ø5.6 × 70.4",
+     "role": "적위축을 미세하게 돌리는 웜, 막대가 접안부까지 뻗는다"},
+    {"item": 23, "name": "적위 손바퀴", "nameEn": "Dec hand wheel",
+     "parts": ["dec-handle"],
+     "material": "황동, 널링", "kind": "brass", "size": "Ø11.2 × 7.6",
+     "role": "관측자가 접안부 곁에서 적위를 돌린다"},
+    {"item": 24, "name": "경통 받침", "nameEn": "tube cradle",
+     "parts": ["cradle"],
+     "material": "주철, 흑색 에나멜", "kind": "cast-iron", "size": "10.4 × 11.2 × 54.4",
+     "role": "적위축 끝에서 경통 밴드 둘을 받친다"},
+    {"item": 25, "name": "경통 밴드", "nameEn": "tube band",
+     "parts": ["tube-band-1", "tube-band-2"],
+     "material": "황동, 흑색 래커", "kind": "brass", "size": "Ø28 × 4.8",
+     "role": "경통을 감싸 받침에 붙든다"},
+    {"item": 26, "name": "밴드 조임 나사", "nameEn": "band clamp screw",
+     "parts": ["band-screw-1", "band-screw-2"],
+     "material": "강철, 블루잉", "kind": "steel", "size": "Ø4.2 × 8.2",
+     "role": "밴드를 조여 경통을 제자리에 고정한다"},
+    {"item": 27, "name": "경통", "nameEn": "main tube",
+     "parts": ["main-tube"],
+     "material": "황동관, 흑색 에나멜", "kind": "brass", "size": "Ø24 × 136",
+     "role": "대물렌즈가 모은 빛을 초점까지 곧게 이끈다"},
+    {"item": 28, "name": "대물렌즈 셀", "nameEn": "objective cell",
+     "parts": ["objective-cell"],
+     "material": "황동, 래커", "kind": "brass", "size": "Ø27 × 11.2",
+     "role": "렌즈를 경통 축에 바로 앉힌다"},
+    {"item": 29, "name": "대물렌즈", "nameEn": "objective lens",
+     "parts": ["objective-lens"],
+     "material": "크라운·플린트 유리 색지움 쌍렌즈", "kind": "glass", "size": "Ø24 × 2.6",
+     "role": "두 유리를 맞대어 색번짐 없이 별빛을 모은다"},
+    {"item": 30, "name": "이슬 가리개", "nameEn": "dew shield",
+     "parts": ["dew-shield"],
+     "material": "황동, 흑색 에나멜", "kind": "brass", "size": "Ø31.6 × 49.6",
+     "role": "렌즈에 이슬과 잡광이 닿지 않게 막는다"},
+    {"item": 31, "name": "초점부 몸체", "nameEn": "focuser body",
+     "parts": ["focuser-body"],
+     "material": "황동, 래커", "kind": "brass", "size": "Ø26.5 × 20.8",
+     "role": "랙을 품고 드로튜브를 앞뒤로 이끈다"},
+    {"item": 32, "name": "피니언 축", "nameEn": "pinion shaft",
+     "parts": ["pinion-shaft"],
+     "material": "강철", "kind": "steel", "size": "Ø1.9 × 9.6",
+     "role": "랙과 물려 손잡이 회전을 직선 이동으로 바꾼다"},
+    {"item": 33, "name": "초점 손잡이", "nameEn": "focusing knob",
+     "parts": ["focus-knob-1", "focus-knob-2"],
+     "material": "황동, 널링", "kind": "brass", "size": "Ø5.6 × 4",
+     "role": "양쪽 어느 손으로도 초점을 맞춘다"},
+    {"item": 34, "name": "드로튜브", "nameEn": "drawtube",
+     "parts": ["drawtube"],
+     "material": "황동, 니켈 도금", "kind": "brass", "size": "Ø11.2 × 22.4",
+     "role": "미끄러져 들고 나며 상을 또렷하게 맺는다"},
+    {"item": 35, "name": "접안렌즈", "nameEn": "eyepiece",
+     "parts": ["eyepiece"],
+     "material": "황동, 흑색 에나멜 · 유리", "kind": "brass", "size": "Ø10.4 × 28",
+     "role": "맺힌 상을 눈앞에서 확대한다"},
+    {"item": 36, "name": "파인더", "nameEn": "finder telescope",
+     "parts": ["finder-tube"],
+     "material": "황동, 흑색 에나멜", "kind": "brass", "size": "Ø8 × 48",
+     "role": "넓은 시야로 겨눌 별을 먼저 찾는다"},
+    {"item": 37, "name": "파인더 접안부", "nameEn": "finder eyepiece",
+     "parts": ["finder-eyepiece"],
+     "material": "황동, 래커", "kind": "brass", "size": "Ø4.8 × 6.9",
+     "role": "십자선 너머로 별을 가운데 놓는다"},
+    {"item": 38, "name": "파인더 브래킷", "nameEn": "finder bracket",
+     "parts": ["finder-bracket-1", "finder-bracket-2"],
+     "material": "황동, 흑색 래커", "kind": "brass", "size": "13 × 9.3 × 2.4",
+     "role": "파인더를 경통과 나란히 받친다"}
+  ],
+  "viewer": {
+    "partColors": {
+      "base": "#525252",
+      "leveling-screw-1": "#C8C8C8",
+      "leveling-screw-2": "#C8C8C8",
+      "leveling-screw-3": "#C8C8C8",
+      "pier": "#5E5E5E",
+      "pier-head": "#6A6A6A",
+      "polar-head": "#525252",
+      "latitude-pivot": "#C8C8C8",
+      "latitude-knob": "#B8B8B8",
+      "polar-housing": "#2A2A2A",
+      "polar-axis": "#D0D0D0",
+      "ra-worm-wheel": "#B8B8B8",
+      "hour-circle": "#D0D0D0",
+      "ra-worm": "#C8C8C8",
+      "ra-worm-bracket": "#6A6A6A",
+      "ra-handle": "#B8B8B8",
+      "dec-housing": "#2A2A2A",
+      "dec-axis": "#D0D0D0",
+      "dec-worm-wheel": "#B8B8B8",
+      "dec-circle": "#D0D0D0",
+      "counterweight-rod": "#C8C8C8",
+      "lock-collar": "#B8B8B8",
+      "counterweight-1": "#5E5E5E",
+      "counterweight-2": "#6A6A6A",
+      "dec-worm": "#C8C8C8",
+      "dec-handle": "#B8B8B8",
+      "cradle": "#5E5E5E",
+      "tube-band-1": "#6A6A6A",
+      "band-screw-1": "#D0D0D0",
+      "tube-band-2": "#6A6A6A",
+      "band-screw-2": "#D0D0D0",
+      "main-tube": "#1E1E1E",
+      "objective-cell": "#B8B8B8",
+      "objective-lens": "#E2E2E2",
+      "dew-shield": "#2A2A2A",
+      "focuser-body": "#B8B8B8",
+      "pinion-shaft": "#C8C8C8",
+      "focus-knob-1": "#C8C8C8",
+      "focus-knob-2": "#C8C8C8",
+      "drawtube": "#D0D0D0",
+      "eyepiece": "#2A2A2A",
+      "finder-tube": "#1E1E1E",
+      "finder-eyepiece": "#B8B8B8",
+      "finder-bracket-1": "#6A6A6A",
+      "finder-bracket-2": "#6A6A6A"
+    },
+    "partMaterials": {
+      "base": "matte",
+      "leveling-screw-1": "metal",
+      "leveling-screw-2": "metal",
+      "leveling-screw-3": "metal",
+      "pier": "satin",
+      "pier-head": "satin",
+      "polar-head": "satin",
+      "latitude-pivot": "metal",
+      "latitude-knob": "metal",
+      "polar-housing": "gloss",
+      "polar-axis": "metal",
+      "ra-worm-wheel": "metal",
+      "hour-circle": "metal",
+      "ra-worm": "metal",
+      "ra-worm-bracket": "satin",
+      "ra-handle": "metal",
+      "dec-housing": "gloss",
+      "dec-axis": "metal",
+      "dec-worm-wheel": "metal",
+      "dec-circle": "metal",
+      "counterweight-rod": "metal",
+      "lock-collar": "metal",
+      "counterweight-1": "satin",
+      "counterweight-2": "satin",
+      "dec-worm": "metal",
+      "dec-handle": "metal",
+      "cradle": "satin",
+      "tube-band-1": "satin",
+      "band-screw-1": "metal",
+      "tube-band-2": "satin",
+      "band-screw-2": "metal",
+      "main-tube": "gloss",
+      "objective-cell": "metal",
+      "objective-lens": "gloss",
+      "dew-shield": "gloss",
+      "focuser-body": "metal",
+      "pinion-shaft": "metal",
+      "focus-knob-1": "metal",
+      "focus-knob-2": "metal",
+      "drawtube": "metal",
+      "eyepiece": "gloss",
+      "finder-tube": "gloss",
+      "finder-eyepiece": "metal",
+      "finder-bracket-1": "satin",
+      "finder-bracket-2": "satin"
+    }
+  }
+}

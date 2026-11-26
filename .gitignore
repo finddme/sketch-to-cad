@@ -1,0 +1,9 @@
+# private workspace: dev history, POC scripts, notes, generated outputs, showcase copies
+/dev/
+.superpowers/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+node_modules/
+/out/

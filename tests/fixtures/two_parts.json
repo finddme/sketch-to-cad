@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "units": "mm",
+  "upAxis": "Z",
+  "name": "box-with-lid",
+  "assumptions": [],
+  "parts": [
+    {
+      "id": "box",
+      "construction": "solid",
+      "features": [
+        {"id": "base", "operation": "base", "kind": "box", "originMm": [0, 0, 0], "sizeMm": [40, 30, 20]}
+      ]
+    },
+    {
+      "id": "lid",
+      "construction": "solid",
+      "features": [
+        {"id": "disc", "operation": "base", "kind": "cylinder", "centerMm": [0, 0, 0], "radiusMm": 15, "heightMm": 5, "axis": "Z"}
+      ]
+    }
+  ],
+  "placement": [
+    {"part": "lid", "translateMm": [20, 15, 20], "rotateDeg": [0, 0, 0]}
+  ],
+  "dimensions": [
+    {"label": "box width", "valueMm": 40, "origin": "sketch", "part": "box", "feature": "base"}
+  ]
+}

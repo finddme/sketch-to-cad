@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "units": "mm",
+  "upAxis": "Z",
+  "name": "phone-stand",
+  "assumptions": ["back plate thickness assumed 4mm"],
+  "parts": [
+    {
+      "id": "body",
+      "construction": "solid",
+      "features": [
+        {"id": "base", "operation": "base", "kind": "box", "originMm": [0, 0, 0], "sizeMm": [80, 70, 6]},
+        {"id": "cable", "operation": "cut", "kind": "hole", "at": [40, 35, 0], "direction": "Z", "diameterMm": 12, "through": true}
+      ],
+      "finish": [{"kind": "fillet", "radiusMm": 2, "edges": "all-outer"}]
+    }
+  ],
+  "dimensions": [
+    {"label": "overall width", "valueMm": 80, "origin": "sketch", "part": "body", "feature": "base"}
+  ]
+}
