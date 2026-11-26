@@ -1,6 +1,6 @@
 # sketch-to-cad
 
-A Claude Code skill/plugin that turns one hand sketch into a **dimensioned drawing → 3D model → 3D-print files → single-file HTML viewer**. It asks for dimensions the sketch does not give instead of inventing them.
+An AI agent skill that turns one hand sketch into a **dimensioned drawing → 3D model → 3D-print files → single-file HTML viewer**. It asks for dimensions the sketch does not give instead of inventing them.
 
 ![Viewer recording: an 1888 patent sketch of an equatorial telescope becomes a parts sheet, then a 3D assembly of 45 parts](docs/images/showcase/autoplay-landscape.webp)
 
@@ -47,14 +47,14 @@ Viewers built from this example (download and open in a browser; no network need
 
 ## Install
 
-**As a plugin (recommended)**
+**As a Claude Code plugin (recommended)**
 
 ```
 /plugin marketplace add finddme/sketch-to-cad
 /plugin install sketch-to-cad@sketch-to-cad-marketplace
 ```
 
-**Copy the skill folder only**
+**Copy the skill folder only** (into your agent's skills folder, for example `~/.claude/skills/`)
 
 ```bash
 cp -r skills/sketch-to-cad ~/.claude/skills/
